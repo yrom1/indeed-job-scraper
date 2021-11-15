@@ -10,12 +10,12 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: '3.x'
-      - name: Make README
-        run: bash make_README.bash
       - name: Install Python dependencies
         uses: py-actions/py-dependency-install@v2
         with:
           path: "././requirements.txt"
+      - name: Make README
+        run: bash make_README.bash
       - name: Clean README
         run: python3 clean_README.py
       - name: Upload README
