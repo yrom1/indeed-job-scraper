@@ -1,6 +1,10 @@
-scrapy
-beautifulsoup4
-requests
 pandas
+numpy
 ipykernel
-selenium
+isort
+black
+black[jupyter]
+pytype
+notebook
+bs4 
+requests
