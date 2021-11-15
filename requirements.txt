@@ -8,3 +8,4 @@ pytype
 notebook
 bs4 
 requests
+nbconvert
