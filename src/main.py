@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
-"""Scrape indeed for job postings based on input."""
-
+"""Indeed job posting scraper."""
 
 import random
 import re
@@ -68,6 +67,10 @@ assert clean_date_Series(TEST_DATE) == 23
 
 
 def main(input: str) -> pd.DataFrame:
+    """Scrape indeed for job postings based on input.
+    Args:
+        input: String to search on indeed.
+    """
     pages = []
     for start in range(0, MAX_NUMBER_OF_PAGES_PER_SEARCH * 10, 10):
         page = requests.get(
