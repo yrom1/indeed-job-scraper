@@ -175,7 +175,7 @@ def main(input = 'data junior', output_path = str(Path.home() / 'pickleFrame'), 
     pd.set_option("display.max_rows", len(sorted_df))
     sorted_no_duplicates_df = sorted_df.drop_duplicates()
 
-    sorted_no_duplicates_df.to_pickle(str(Path(output_path) / f"{str(datetime.today().strftime('%Y-%m-%d'))}.p"))
+    sorted_no_duplicates_df.to_pickle(str(Path(output_path) / f"{'_'.join(str(datetime.today()).split())}.p"))
 
 
 if __name__ == "__main__":
