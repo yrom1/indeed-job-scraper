@@ -6,14 +6,14 @@ import random
 import re
 import time
 from urllib.parse import quote
-
+from pathlib import Path
+from datetime import datetime
 import bs4
 import numpy as np
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
 
-MAX_NUMBER_OF_PAGES_PER_SEARCH = 10
 TEST_INPUT = """<ul style="list-style-type:circle;margin-top: 0px;margin-bottom: 0px;padding-left:20px;">\n<li style="margin-bottom:0px;">Interpret <b>data</b>, formulate reports, and make recommendations to the team.</li>\n<li>Remain fully informed on latest <b>data</b> trends, practice, and process.</li>\n</ul><ul style="list-style-type:circle;margin-top: 0px;margin-bottom: 0px;padding-left:20px;">\n<li style="margin-bottom:0px;">Interpret <b>data</b>, formulate reports, and make recommendations to the team.</li>\n<li>Remain fully informed on latest <b>data</b> trends, practice, and process.</li>\n</ul>"""
 TEST_DATE = """23 days ago"""
 
@@ -66,13 +66,17 @@ assert (
 assert clean_date_Series(TEST_DATE) == 23
 
 
-def main(input: str) -> pd.DataFrame:
+def main(input = 'data junior', output_path = str(Path.home() / 'pickleFrame'), pages_per_search = 1) -> None:
     """Scrape indeed for job postings based on input.
     Args:
         input: String to search on indeed.
+        output_path: Place to store DateFrame pickle.
+        pages_per_search: Max number of indeed pages to scrape based on search.
     """
+    Path(output_path).mkdir(parents=True, exist_ok=True)
+
     pages = []
-    for start in range(0, MAX_NUMBER_OF_PAGES_PER_SEARCH * 10, 10):
+    for start in range(0, pages_per_search * 10, 10):
         page = requests.get(
             f"https://ca.indeed.com/jobs?q={htmlify(input)}&l=Canada&start="
             + str(start)
@@ -170,7 +174,8 @@ def main(input: str) -> pd.DataFrame:
 
     pd.set_option("display.max_rows", len(sorted_df))
     sorted_no_duplicates_df = sorted_df.drop_duplicates()
-    return sorted_no_duplicates_df
+
+    sorted_no_duplicates_df.to_pickle(str(Path(output_path) / f"{str(datetime.today().strftime('%Y-%m-%d'))}.p"))
 
 
 if __name__ == "__main__":
