@@ -14,9 +14,6 @@ import pandas as pd
 import requests
 from bs4 import BeautifulSoup
 
-TEST_INPUT = """<ul style="list-style-type:circle;margin-top: 0px;margin-bottom: 0px;padding-left:20px;">\n<li style="margin-bottom:0px;">Interpret <b>data</b>, formulate reports, and make recommendations to the team.</li>\n<li>Remain fully informed on latest <b>data</b> trends, practice, and process.</li>\n</ul><ul style="list-style-type:circle;margin-top: 0px;margin-bottom: 0px;padding-left:20px;">\n<li style="margin-bottom:0px;">Interpret <b>data</b>, formulate reports, and make recommendations to the team.</li>\n<li>Remain fully informed on latest <b>data</b> trends, practice, and process.</li>\n</ul>"""
-TEST_DATE = """23 days ago"""
-
 
 def htmlify(input: str) -> str:
     """
@@ -56,17 +53,11 @@ def make_link(title: str, company: str) -> str:
     return f"https://ca.indeed.com/jobs?q={htmlify(title)}%20{htmlify(company)}"
 
 
-assert htmlify("Benefits Analyst (Junior)") == "Benefits%20Analyst%20%28Junior%29"
-
-assert (
-    make_link("Junior Data Analyst", "FlightHub")
-    == "https://ca.indeed.com/jobs?q=Junior%20Data%20Analyst%20FlightHub"
-)
-
-assert clean_date_Series(TEST_DATE) == 23
-
-
-def main(input = 'data junior', output_path = str(Path.home() / 'pickleFrame'), pages_per_search = 1) -> None:
+def main(
+    input="data junior",
+    output_path=str(Path.home() / "pickleFrame"),
+    pages_per_search=1,
+) -> None:
     """Scrape indeed for job postings based on input.
     Args:
         input: String to search on indeed.
@@ -175,8 +166,18 @@ def main(input = 'data junior', output_path = str(Path.home() / 'pickleFrame'), 
     pd.set_option("display.max_rows", len(sorted_df))
     sorted_no_duplicates_df = sorted_df.drop_duplicates()
 
-    sorted_no_duplicates_df.to_pickle(str(Path(output_path) / f"{'_'.join(str(datetime.today()).split())}.p"))
+    sorted_no_duplicates_df.to_pickle(
+        str(Path(output_path) / f"{'_'.join(str(datetime.today()).split())}.p")
+    )
 
 
 if __name__ == "__main__":
-    print(main("data junior"))
+    TEST_INPUT = """<ul style="list-style-type:circle;margin-top: 0px;margin-bottom: 0px;padding-left:20px;">\n<li style="margin-bottom:0px;">Interpret <b>data</b>, formulate reports, and make recommendations to the team.</li>\n<li>Remain fully informed on latest <b>data</b> trends, practice, and process.</li>\n</ul><ul style="list-style-type:circle;margin-top: 0px;margin-bottom: 0px;padding-left:20px;">\n<li style="margin-bottom:0px;">Interpret <b>data</b>, formulate reports, and make recommendations to the team.</li>\n<li>Remain fully informed on latest <b>data</b> trends, practice, and process.</li>\n</ul>"""
+    TEST_DATE = """23 days ago"""
+    assert htmlify("Benefits Analyst (Junior)") == "Benefits%20Analyst%20%28Junior%29"
+    assert (
+        make_link("Junior Data Analyst", "FlightHub")
+        == "https://ca.indeed.com/jobs?q=Junior%20Data%20Analyst%20FlightHub"
+    )
+    assert clean_date_Series(TEST_DATE) == 23
+    main("data junior")
