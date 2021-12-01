@@ -5,14 +5,15 @@
 import random
 import re
 import time
-from urllib.parse import quote
-from pathlib import Path
 from datetime import datetime
+from pathlib import Path
+from urllib.parse import quote
+
 import bs4
 import numpy as np
 import pandas as pd
 import requests
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, NavigableString
 
 
 def htmlify(input: str) -> str:
@@ -116,7 +117,10 @@ def main(
             locations = locations.append(pd.Series([str(location)]))
 
             # Posting Date
-            date = job.find("span", attrs={"class": "date"}).next
+            date = job.find("span", attrs={"class": "date"})
+            date = "".join(
+                [element for element in date if isinstance(element, NavigableString)]
+            )
             dates = dates.append(pd.Series([str(date)]))
 
     clean_dates = dates.apply(clean_date_Series)
@@ -180,4 +184,4 @@ if __name__ == "__main__":
         == "https://ca.indeed.com/jobs?q=Junior%20Data%20Analyst%20FlightHub"
     )
     assert clean_date_Series(TEST_DATE) == 23
-    main("data junior")
+    main("data junior", "/home/ryan/indeedScraper", 1)
