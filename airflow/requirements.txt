@@ -1,0 +1,13 @@
+pandas
+numpy
+ipykernel
+isort
+black
+black[jupyter]
+pytype
+notebook
+bs4 
+requests
+nbconvert
+mypy
+apache-airflow
