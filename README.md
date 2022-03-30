@@ -5,6 +5,7 @@ import pandas as pd
 
 ```python
 import src.main
+
 src.main.__doc__
 ```
 
@@ -18,6 +19,7 @@ src.main.__doc__
 
 ```python
 from src.main import main
+
 main.__doc__
 ```
 
@@ -49,8 +51,8 @@ len(df)
 
 ```python
 # some basic data is scraped, enough to see if clicking the link is interesting
-pd.set_option('display.max_colwidth', None)
-df[['titles', 'companyNames', 'jobSnippets', 'locations', 'dates']].head()
+pd.set_option("display.max_colwidth", None)
+df[["titles", "companyNames", "jobSnippets", "locations", "dates"]].head()
 ```
 
 
