@@ -184,6 +184,4 @@ if __name__ == "__main__":
         == "https://ca.indeed.com/jobs?q=Junior%20Data%20Analyst%20FlightHub"
     )
     assert clean_date_Series(TEST_DATE) == 23
-    for path in Path(".").glob("*.p"):
-        path.unlink()
-    main("data junior", "/home/ryan/indeedScraper", 10)
+    main("data junior", "./archive/", 10)
