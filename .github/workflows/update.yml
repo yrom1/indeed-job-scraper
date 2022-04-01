@@ -1,6 +1,5 @@
 name: Daily Job Scrape
 on:
-  push:
   schedule:
     - cron: "0 0 * * *"
 jobs:
