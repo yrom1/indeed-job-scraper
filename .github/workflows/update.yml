@@ -1,5 +1,6 @@
 name: Daily Job Scrape
 on:
+  push:
   schedule:
     - cron: "0 0 * * *"
 jobs:
@@ -14,9 +15,13 @@ jobs:
           python-version: "3.9"
       - name: Install pip requirements
         run: pip install -r requirements.txt
-      - name: Scrape jobs
-        run: python main.py
+      - name: Scrape data junior
+        run: python main.py "data junior" "./archive/" 10
+      - name: Scrape python junior
+        run: python main.py "python junior" "./archive/" 10
+      - name: Scrape sql junior
+        run: python main.py "sql junior" "./archive/" 10
       - name: Commit changes archive
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: Add daily job posting scrape
+          commit_message: Add job posting scrape

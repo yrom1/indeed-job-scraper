@@ -184,4 +184,5 @@ if __name__ == "__main__":
         == "https://ca.indeed.com/jobs?q=Junior%20Data%20Analyst%20FlightHub"
     )
     assert clean_date_Series(TEST_DATE) == 23
-    main("data junior", "./archive/", 10)
+    import sys
+    main(sys.argv[1], sys.argv[2], sys.argv[3])
