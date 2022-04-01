@@ -171,7 +171,7 @@ def main(
     sorted_no_duplicates_df = sorted_df.drop_duplicates()
 
     sorted_no_duplicates_df.to_pickle(
-        str(Path(output_path) / f"{'_'.join(str(datetime.today()).split())}.p")
+        str(Path(output_path) / f"{'_'.join(str(datetime.today()).split())}_{'_'.join(input.split())}.p")
     )
 
 
