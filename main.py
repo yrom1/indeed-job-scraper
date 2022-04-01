@@ -171,7 +171,10 @@ def main(
     sorted_no_duplicates_df = sorted_df.drop_duplicates()
 
     sorted_no_duplicates_df.to_pickle(
-        str(Path(output_path) / f"{'_'.join(str(datetime.today()).split())}_{'_'.join(input.split())}.p")
+        str(
+            Path(output_path)
+            / f"{'_'.join(str(datetime.today()).split())}_{'_'.join(input.split())}.p"
+        )
     )
 
 
@@ -185,4 +188,5 @@ if __name__ == "__main__":
     )
     assert clean_date_Series(TEST_DATE) == 23
     import sys
-    main(sys.argv[1], sys.argv[2], sys.argv[3])
+
+    main(sys.argv[1], sys.argv[2], str(sys.argv[3]))
