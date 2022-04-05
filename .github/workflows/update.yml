@@ -1,5 +1,6 @@
 name: Daily Job Scrape
 on:
+  push:
   schedule:
     - cron: "0 0 * * *"
 jobs:
@@ -20,7 +21,9 @@ jobs:
         run: python main.py "python junior" "./archive/" 10
       - name: Scrape sql junior
         run: python main.py "sql junior" "./archive/" 10
+      - name: Update notebook
+        run: jupyter nbconvert --to notebook --execute read_local_pickle.ipynb
       - name: Commit changes archive
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: Add job posting scrape
+          commit_message: Add job posting scrape, update notebook
