@@ -9,14 +9,21 @@ from pathlib import Path
 subprocess.run(["git", "pull", "--ff-only"])
 ```
 
-    Updating 45124b9..719bb1c
+    Updating 719bb1c..48bbc83
     Fast-forward
-     read_local_pickle.ipynb | 128 +-----------------------------------------------
-     1 file changed, 2 insertions(+), 126 deletions(-)
+     README.md                                          | 3072 +-----------
+     archive/2022-04-17_07:49:55.569633_data_junior.p   |  Bin 0 -> 39071 bytes
+     archive/2022-04-17_07:50:42.276349_python_junior.p |  Bin 0 -> 50517 bytes
+     archive/2022-04-17_07:51:32.670518_sql_junior.p    |  Bin 0 -> 48869 bytes
+     read_local_pickle.nbconvert.ipynb                  | 4994 +-------------------
+     5 files changed, 241 insertions(+), 7825 deletions(-)
+     create mode 100644 archive/2022-04-17_07:49:55.569633_data_junior.p
+     create mode 100644 archive/2022-04-17_07:50:42.276349_python_junior.p
+     create mode 100644 archive/2022-04-17_07:51:32.670518_sql_junior.p
 
 
     From https://github.com/yrom1/indeed-job-scraper
-       45124b9..719bb1c  main       -> origin/main
+       719bb1c..48bbc83  main       -> origin/main
 
 
 
@@ -95,7 +102,7 @@ df.drop(columns=['locations','clean_dates'])
       <td>https://ca.indeed.com/jobs?q=Financial%20Analy...</td>
     </tr>
     <tr>
-      <th>100</th>
+      <th>107</th>
       <td>Junior PHP backend developer</td>
       <td>Eversun Software Corp.</td>
       <td>Hands on experience with PHP 7, Mysql, MongoD...</td>
@@ -103,7 +110,7 @@ df.drop(columns=['locations','clean_dates'])
       <td>https://ca.indeed.com/jobs?q=Junior%20PHP%20ba...</td>
     </tr>
     <tr>
-      <th>1</th>
+      <th>2</th>
       <td>Jr. SQL BI Developer</td>
       <td>Vox Mobile</td>
       <td>This role will play an integral role in suppo...</td>
@@ -111,20 +118,20 @@ df.drop(columns=['locations','clean_dates'])
       <td>https://ca.indeed.com/jobs?q=Jr.%20SQL%20BI%20...</td>
     </tr>
     <tr>
-      <th>222</th>
-      <td>Junior Software Developer</td>
-      <td>CardinalChain Software, Inc.</td>
-      <td>Maintain and enhance enterprise financial sys...</td>
-      <td>Active 1 day ago</td>
-      <td>https://ca.indeed.com/jobs?q=Junior%20Software...</td>
+      <th>109</th>
+      <td>Junior DevOps Developer</td>
+      <td>Checkfront</td>
+      <td>Your daily work will include CI systems, Kube...</td>
+      <td>1 day ago</td>
+      <td>https://ca.indeed.com/jobs?q=Junior%20DevOps%2...</td>
     </tr>
     <tr>
-      <th>221</th>
-      <td>Junior Fiscal Policy Analyst</td>
-      <td>Validus Healthcare Economics Inc.</td>
-      <td>Location: Winnipeg (Resident of Winnipeg or w...</td>
-      <td>Active 1 day ago</td>
-      <td>https://ca.indeed.com/jobs?q=Junior%20Fiscal%2...</td>
+      <th>110</th>
+      <td>Junior Developer</td>
+      <td>Silver Icing Inc</td>
+      <td>As a Silver Icing Junior Developer, you have ...</td>
+      <td>1 day ago</td>
+      <td>https://ca.indeed.com/jobs?q=Junior%20Develope...</td>
     </tr>
     <tr>
       <th>...</th>
@@ -135,48 +142,48 @@ df.drop(columns=['locations','clean_dates'])
       <td>...</td>
     </tr>
     <tr>
-      <th>200</th>
-      <td>Junior Drupal Developer (Remote Friendly)</td>
-      <td>Acro Media</td>
-      <td>Acro Media is looking for a Drupal Software D...</td>
+      <th>196</th>
+      <td>QA Analyst</td>
+      <td>SHIPTRACK INC.</td>
+      <td>Analyze, document, and prioritize bug reports...</td>
       <td>30+ days ago</td>
-      <td>https://ca.indeed.com/jobs?q=Junior%20Drupal%2...</td>
+      <td>https://ca.indeed.com/jobs?q=QA%20Analyst%20SH...</td>
     </tr>
     <tr>
-      <th>201</th>
+      <th>197</th>
+      <td>Junior Developer - Quality Assurance</td>
+      <td>Fortran Traffic Systems</td>
+      <td>With the arrival of transportation technologi...</td>
+      <td>30+ days ago</td>
+      <td>https://ca.indeed.com/jobs?q=Junior%20Develope...</td>
+    </tr>
+    <tr>
+      <th>198</th>
+      <td>Junior Web Developer</td>
+      <td>Outshinery Creative</td>
+      <td>You will work closely with our CTO on various...</td>
+      <td>30+ days ago</td>
+      <td>https://ca.indeed.com/jobs?q=Junior%20Web%20De...</td>
+    </tr>
+    <tr>
+      <th>200</th>
       <td>Junior Software Developer</td>
-      <td>i-Open Technologies</td>
-      <td>You will be required to learn how to leverage...</td>
+      <td>Bioinformatics Solutions</td>
+      <td>Work closely with other developers in an agil...</td>
       <td>30+ days ago</td>
       <td>https://ca.indeed.com/jobs?q=Junior%20Software...</td>
     </tr>
     <tr>
-      <th>202</th>
-      <td>Junior Developer/Programmer</td>
-      <td>SimplyCast</td>
-      <td>Maintain software design consistency, aesthet...</td>
+      <th>308</th>
+      <td>Jr. / Int. Software Engineering (12mo fixed term)</td>
+      <td>Magellan Aerospace</td>
+      <td>Magellan Aerospace, Winnipeg is looking for a...</td>
       <td>30+ days ago</td>
-      <td>https://ca.indeed.com/jobs?q=Junior%20Develope...</td>
-    </tr>
-    <tr>
-      <th>194</th>
-      <td>Junior Developer</td>
-      <td>University of Alberta Students' Union</td>
-      <td>As part of an information technology team, th...</td>
-      <td>30+ days ago</td>
-      <td>https://ca.indeed.com/jobs?q=Junior%20Develope...</td>
-    </tr>
-    <tr>
-      <th>311</th>
-      <td>Data Processing Analyst I - 1 year contract (2)</td>
-      <td>ERIS Info.</td>
-      <td>ERIS has an immediate opportunity for a Data ...</td>
-      <td>30+ days ago</td>
-      <td>https://ca.indeed.com/jobs?q=Data%20Processing...</td>
+      <td>https://ca.indeed.com/jobs?q=Jr.%20/%20Int.%20...</td>
     </tr>
   </tbody>
 </table>
-<p>297 rows × 5 columns</p>
+<p>294 rows × 5 columns</p>
 </div>
 
 
